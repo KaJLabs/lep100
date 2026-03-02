@@ -1,0 +1,21 @@
+[package]
+name = "lep100-conformance"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "LEP100 conformance test harness (Rust-side utilities)"
+
+[dependencies]
+lep100-core = { path = "../lep100-core" }
+lep100-abi = { path = "../lep100-abi" }
+anyhow = "1.0"
+serde_json = "1.0"
+thiserror = "1.0"
+
+[features]
+default = []
+zk = ["lep100-core/zk"]
+bridge = ["lep100-core/bridge"]
+ppal = ["lep100-core/ppal"]

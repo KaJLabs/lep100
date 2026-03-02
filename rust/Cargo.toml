@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    "crates/lep100-core",
+    "crates/lep100-abi",
+    "crates/lep100-conformance",
+    "crates/lep100-cli"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+authors = ["J. King Kasr <kajlabs@lithosphere.network>"]
+repository = "https://github.com/lithosphere/lep100"
+homepage = "https://docs.lithosphere.network"
+description = "LEP100 — Lithosphere Enhancement Proposals (AI + Asset + Privacy Standard Stack)"

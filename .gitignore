@@ -1,6 +1,23 @@
-/target
-/node_modules
-/.DS_Store
-/out
-/packages/zk/keys/pk
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Rust
+target/
+**/*.rs.bk
+
+# Node
+node_modules/
+dist/
+
+# Reports
+reports/
+*.junit.xml
+
+# Secrets
 .env
+.env.*
