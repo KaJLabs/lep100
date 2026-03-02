@@ -8,7 +8,7 @@
 <h3 align="center">Asset & AI Protocol Stack for Lithosphere</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-draft-blue.svg" />
+  <img src="https://img.shields.io/badge/status-final-blue.svg" />
   <img src="https://img.shields.io/badge/standards-LEP100-7b2cff.svg" />
   <img src="https://img.shields.io/badge/language-Lithic%20(.lithic)-111827.svg" />
   <img src="https://img.shields.io/badge/target-LithoVM-0ea5e9.svg" />
@@ -176,7 +176,6 @@ An implementation is **LEP100-compliant** if it:
 * **LithoVM** — deterministic execution target
 * **Makalu Testnet** — integration & release validation
 * **LSCL** — secure reference modules
-* **Built.at** — builder platform integration (recommended)
 
 ---
 
