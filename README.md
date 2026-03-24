@@ -75,6 +75,12 @@ An implementation is **LEP100-compliant** if it:
 
 ---
 
+## Deploy LEP100 Token
+
+Deploying a LEP100 token on Lithosphere is conceptually similar to ERC-20 deployment, but with Lithosphere-specific tooling (Lithic + dual Cosmos/EVM support).
+
+---
+
 ## Credits
 
 Designed and proposed by **J. King Kasr** • Maintained by **KaJ Labs**.
