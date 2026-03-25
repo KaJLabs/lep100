@@ -75,9 +75,182 @@ An implementation is **LEP100-compliant** if it:
 
 ---
 
+# 🪙 LEP100 Token Deployment
+
 ## Deploy LEP100 Token
 
-Deploying a LEP100 token on Lithosphere is conceptually similar to ERC-20 deployment, but with Lithosphere-specific tooling (Lithic + dual Cosmos/EVM support).
+Deploying LEP100 tokens on Lithosphere is conceptually similar to ERC-20 deployment, but with Lithosphere-specific tooling (Lithic + dual Cosmos/EVM support).
+
+[![Network](https://img.shields.io/badge/Network-Lithosphere-00ff88?style=for-the-badge)](https://makalu.litho.ai)
+[![Standard](https://img.shields.io/badge/Standard-LEP100-blue?style=for-the-badge)](#)
+[![Language](https://img.shields.io/badge/Lithic-Supported-purple?style=for-the-badge)](https://github.com/KaJLabs/Lithic)
+[![EVM](https://img.shields.io/badge/EVM-Compatible-green?style=for-the-badge)](#)
+[![License](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](#)
+
+> Deploy LEP100 tokens on the Lithosphere Network (Makalu Testnet & Mainnet)
+
+---
+
+## 🌐 Overview
+
+**LEP100** is the native fungible token standard on Lithosphere, built for:
+
+- ⚡ High-performance execution (~1s blocks)
+- 🔗 Cross-chain compatibility (Cosmos + EVM)
+- 🤖 Agent-native programmability
+- 🧩 Token lifecycle management (minting, vesting, governance)
+
+This repository demonstrates how to deploy LEP100 tokens using:
+
+- **Lithic (native)** — recommended 
+- **Solidity (EVM-compatible)** 
+- **Litho Finance (no-code UI)** 
+
+---
+
+## ⚙️ Network Configuration
+
+### 🧪 Makalu Testnet
+
+| Parameter        | Value                     |
+|----------------|---------------------------|
+| RPC Endpoint    | https://rpc.litho.ai     |
+| Cosmos Chain ID | lithosphere_777777-1     |
+| EVM Chain ID    | 700777                   |
+| Explorer        | https://makalu.litho.ai  |
+
+---
+### 1️⃣ Lithic Deployment (Recommended)
+
+#### 📦 Install Lithic CLI
+```text
+git clone https://github.com/KaJLabs/Lithic
+cd Lithic
+cargo build --release
+```
+
+###3 🏗 Initialize Project
+
+```text
+lithic new token
+cd token
+```
+
+#### 🧾 Example LEP100 Contract
+```text
+contract LEP100Token {
+
+   name: string = "MyToken";
+   symbol: string = "MTK";
+   decimals: u8 = 18;
+
+   total_supply: u256;
+   balances: mapping(address => u256);
+
+   init(initial_supply: u256) {
+       total_supply = initial_supply;
+       balances[msg.sender] = initial_supply;
+   }
+
+   fn transfer(to: address, amount: u256) {
+       assert(balances[msg.sender] >= amount);
+
+       balances[msg.sender] -= amount;
+       balances[to] += amount;
+   }
+
+   fn balance_of(owner: address) -> u256 {
+       return balances[owner];
+   }
+}
+```
+
+#### 🔨 Build
+lithic build
+
+#### 🚀 Deploy
+```text
+lithic deploy \
+ --network makalu \
+ --private-key YOUR_PRIVATE_KEY \
+ --args 1000000000000000000000000
+```
+
+#### 🔍 Verify
+👉 https://makalu.litho.ai
+
+### 2️⃣ Solidity Deployment (EVM)
+#### 📦 Install Dependencies
+```text
+npm install --save-dev hardhat @openzeppelin/contracts
+```
+
+#### 🧾 Contract
+
+```text
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract LEP100Token is ERC20 {
+   constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
+       _mint(msg.sender, initialSupply);
+   }
+}
+```
+
+### ⚙️ Hardhat Config
+
+```text
+module.exports = {
+ networks: {
+   litho: {
+     url: "https://rpc.litho.ai",
+     chainId: 700777,
+     accounts: [process.env.PRIVATE_KEY]
+   }
+ },
+ solidity: "0.8.20"
+};
+```
+
+#### 🚀 Deploy
+```text
+npx hardhat run scripts/deploy.js --network litho
+```
+
+
+### 3️⃣ Litho Finance (No-Code)
+Deploy via UI:
+Connect wallet
+Select Create Token
+Choose LEP100
+Configure supply + vesting
+Click Deploy
+
+### 🤖 Agent Integration
+LEP100 tokens are designed for AI agent interaction.
+🧠 AgentCraft
+Create and Deploy Powerful AI Agents Onchain
+Visual workflow builder
+Connect LLMs, APIs, databases
+Build agents that reason, remember, and act
+No-code creation
+Automated onchain deployment
+
+### 🧱 Ecosystem
+Litho Finance — Token lifecycle platform
+Lithic — Smart contract language
+LEP100 — Token standard
+AgentCraft — AI agent builder
+
+### 🔐 Best Practices
+✅ Use multisig wallets
+✅ Add vesting contracts
+✅ Audit contracts before mainnet
+✅ Test on Makalu testnet
+✅ Monitor token activity
 
 ---
 
